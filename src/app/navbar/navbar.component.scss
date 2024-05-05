@@ -1,0 +1,31 @@
+.bg-maroon {
+  background-color: #1c1e27;
+}
+.logo {
+  margin-right: 70%;
+  max-width: 168%;
+  height: auto;
+  margin-top: 1%;
+}
+.nav-link{
+  font-size: large;
+  color: white;
+}
+.active{
+    font-weight: bold !important;
+    border-bottom: 2px solid black !important;
+}
+
+
+.navbar {
+  height: 100px; 
+ 
+}
+@media (max-width: 991px) {
+  .logo {
+   max-width: 48%;
+        height: auto;
+        margin-top: -9px;
+    
+  }
+}

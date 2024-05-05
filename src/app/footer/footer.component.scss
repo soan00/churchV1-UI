@@ -1,0 +1,33 @@
+.footer {
+  background-color: #1c1e27;
+  color: white;
+  padding: 20px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+  .footer-logo {
+    max-width: 30%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    margin-bottom: 5px;
+  }
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 20px; /* Adjust as needed */
+}
+
+.social-icons li:last-child {
+  margin-right: 0;
+}
