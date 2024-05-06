@@ -10,19 +10,12 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto"> <!-- Changed mr-auto to ml-auto for right alignment -->
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="/home"  routerLinkActive="active">Home</a>
-        </li>
+      <ul class="navbar-nav ml-auto" *ngFor="let value of data">
+        
         <li class="nav-item" style="margin-left: 15px;">
-          <a class="nav-link" routerLink="/prayer" routerLinkActive="active">Prayer</a>
+          <a class="nav-link" routerLink={{value.link}} routerLinkActive="active">{{value.name}}</a>
         </li>
-        <li class="nav-item" style="margin-left: 15px;">
-          <a class="nav-link" routerLink="/donet" routerLinkActive="active">Donation</a>
-        </li>
-        <li class="nav-item " style="margin-left: 15px;">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
-        </li>
+        
         
       </ul>
     </div>
