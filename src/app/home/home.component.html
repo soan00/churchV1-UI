@@ -7,4 +7,25 @@
     Psalms 121:7
   </div>
 </div>
+<div class="container mt-4">
+  <div class="row" style="margin-bottom: 6%;" *ngFor="let item of data">
+    <div class="col-md-6">
+<iframe width="600" height = "400" [src] = "getSafeUrl(item.link)" title = "YouTube video player" frameborder = "0" allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy = "strict-origin-when-cross-origin" allowfullscreen > </iframe>    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-12">
+              <h2>{{item.title}}</h2>
+        </div>
+        <div class="col-md-12">
+          <h5>{{item.discription}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      this is even container
+    </div>
+  </div>
+  
+</div>
+<br>
 <router-outlet></router-outlet>

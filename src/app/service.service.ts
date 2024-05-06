@@ -12,6 +12,9 @@ export class ServiceService {
   getNavbarData(): Observable<any> {
     return this.http.get<any>(`${this.url}/Home/getNavItems`);
   }
+  getContents(): Observable<any> {
+    return this.http.get<any>(`${this.url}/Home/getContent`)
+  }
   showLoader() {
     this.loader.show()
   }

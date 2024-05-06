@@ -13,10 +13,14 @@ import { CommonModule } from '@angular/common';
 export class NavbarComponent implements OnInit {
   constructor(private http: ServiceService) { }
   data: any;
+  length: number = 0;
   ngOnInit(): void {
     this.http.showLoader();
     this.http.getNavbarData().subscribe({
-      next: (res) => { this.data = res; this.http.hideLoader(); },
+      next: (res) => {
+        this.data = res; this.http.hideLoader();
+        this.length = this.data.length;
+      },
       error: (err) => console.log(err),
       complete: () => this.http.hideLoader()
     }
