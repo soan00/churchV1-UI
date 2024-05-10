@@ -4,21 +4,23 @@ import { ServiceService } from '../service.service';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "../footer/footer.component";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
+import { MatDialog } from '@angular/material/dialog';
+import { EventPopupComponent } from '../event-popup/event-popup.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  imports: [RouterOutlet, CommonModule, FooterComponent]
+  imports: [RouterOutlet, CommonModule, FooterComponent, EventPopupComponent]
 })
 export class HomeComponent implements OnInit {
-  constructor(private http: ServiceService, private sanitizer: DomSanitizer) { }
+  constructor(private http: ServiceService, private sanitizer: DomSanitizer, private dialog: MatDialog) { }
   data: any;
 
   ngOnInit(): void {
     this.loadData();
+    this.openPopup();
   }
   loadData() {
     this.http.showLoader();
@@ -33,5 +35,10 @@ export class HomeComponent implements OnInit {
   getSafeUrl(link: string): SafeResourceUrl {
 
     return this.sanitizer.bypassSecurityTrustResourceUrl(link);
+  }
+  openPopup() {
+    this.dialog.open(EventPopupComponent, {
+      width: '60%', // Adjust width as needed
+    });
   }
 }
