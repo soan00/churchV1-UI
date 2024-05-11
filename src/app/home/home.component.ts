@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       next: (res) => {
         this.data = res;
         console.log(this.data);
-      }, error: (err) => console.log(err),
+      }, error: (err) => { this.http.hideLoader(); console.log(err) },
       complete: () => this.http.hideLoader()
     })
   }
@@ -37,8 +37,15 @@ export class HomeComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(link);
   }
   openPopup() {
-    this.dialog.open(EventPopupComponent, {
-      width: '60%', // Adjust width as needed
-    });
+    this.http.showLoader();
+    this.http.getEvent().subscribe({
+      next: (res) => {
+        if (res.length > 0)
+          this.dialog.open(EventPopupComponent, {
+            width: '60%', // Adjust width as needed
+          });
+      }, error: (err) => { this.http.hideLoader(); console.log(err); }, complete: () => this.http.hideLoader()
+    })
+
   }
 }

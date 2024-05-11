@@ -15,6 +15,9 @@ export class ServiceService {
   getContents(): Observable<any> {
     return this.http.get<any>(`${this.url}/Home/getContent`)
   }
+  getEvent(): Observable<any> {
+    return this.http.get<any>(`${this.url}/Home/getEvent`);
+  }
   showLoader() {
     this.loader.show()
   }
