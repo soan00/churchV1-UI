@@ -26,8 +26,7 @@ export class HomeComponent implements OnInit {
     this.http.showLoader();
     this.http.getContents().subscribe({
       next: (res) => {
-        this.data = res;
-        console.log(this.data);
+        this.data = res;    
       }, error: (err) => { this.http.hideLoader(); console.log(err) },
       complete: () => this.http.hideLoader()
     })
@@ -42,7 +41,7 @@ export class HomeComponent implements OnInit {
       next: (res) => {
         if (res.length > 0)
           this.dialog.open(EventPopupComponent, {
-            width: '60%', // Adjust width as needed
+            width: '60%',
           });
       }, error: (err) => { this.http.hideLoader(); console.log(err); }, complete: () => this.http.hideLoader()
     })

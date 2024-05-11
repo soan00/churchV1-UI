@@ -1,5 +1,15 @@
 <div class="popup-container">
   <i class="fa-solid fa-xmark close-button fa-2x" (click)="closePopup()"></i>
-  <h2>Welcome to our website!</h2>
-  <p>This is a popup window.</p>
+  <h2 class="text-center p-2 mt-2">Upcoming Event</h2>
+  <!-- outer-card.component.html -->
+<div class="card w-50 text-center mt-4" style="margin-left: 25%;"  *ngFor="let item of data">
+  <div class="card-header">
+    <h4>{{item.name}}</h4>
+  </div>
+  <div class="card-body">
+   <p><b>Discription:</b> {{item.discription}}</p>
+   <p><b>Date and Time:</b> {{item.date}}</p>
+  </div>
+</div>
+
 </div>
