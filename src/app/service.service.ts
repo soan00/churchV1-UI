@@ -18,6 +18,9 @@ export class ServiceService {
   getEvent(): Observable<any> {
     return this.http.get<any>(`${this.url}/Home/getEvent`);
   }
+  postPrayer(data: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/Home/postPrayer`, data);
+  }
   showLoader() {
     this.loader.show()
   }
