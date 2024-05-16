@@ -15,18 +15,28 @@ import { EventPopupComponent } from '../event-popup/event-popup.component';
   imports: [RouterOutlet, CommonModule, FooterComponent, EventPopupComponent]
 })
 export class HomeComponent implements OnInit {
-  constructor(private http: ServiceService, private sanitizer: DomSanitizer, private dialog: MatDialog) { }
+  constructor(private http: ServiceService,
+    private sanitizer: DomSanitizer, private dialog: MatDialog) { }
   data: any;
-
+  pageSize: number = 3;
+  pageNumber: number = 1;
+  totalCount: number = 0;
+  right: boolean = false;
+  left: boolean = true;
   ngOnInit(): void {
-    this.loadData();
+    this.loadData(this.pageNumber, this.pageSize);
     this.openPopup();
+
   }
-  loadData() {
+  loadData(pageNumber: number, pageSize: number) {
     this.http.showLoader();
-    this.http.getContents().subscribe({
+    this.http.getContents(pageNumber, pageSize).subscribe({
       next: (res) => {
-        this.data = res;    
+        this.data = res.Data;
+        this.totalCount = res.Count;
+        if ((this.pageNumber * this.pageSize) >= this.totalCount)
+          this.right = true;
+        console.log(this.data, this.totalCount);
       }, error: (err) => { this.http.hideLoader(); console.log(err) },
       complete: () => this.http.hideLoader()
     })
@@ -44,7 +54,34 @@ export class HomeComponent implements OnInit {
             width: '60%',
           });
       }, error: (err) => { this.http.hideLoader(); console.log(err); }, complete: () => this.http.hideLoader()
-    })
+    });
+  }
+  sub() {
+    this.pageNumber -= 1;
+    this.loadData(this.pageNumber, this.pageSize);
+    if (this.pageNumber == 1) {
+      this.left = true;
+      this.right = false;
+    }
+    else {
+      this.pageNumber -= 1;
+      this.right = false;
+    }
+
+  }
+  add() {
+    if (this.data.length === 0) return;
+    this.pageNumber += 1;
+    this.loadData(this.pageNumber, this.pageSize);
+    this.left = false;
+    const totalData = (this.pageNumber * this.pageSize) >= this.totalCount;
+    if (totalData && this.data.length > 0) {
+      this.right = true;
+    }
+    else {
+      this.right = false;
+    }
+
 
   }
 }

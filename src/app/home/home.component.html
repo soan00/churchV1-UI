@@ -20,7 +20,16 @@
           <h5>{{item.discription}}</h5>
         </div>
       </div>      
-    </div>    
+    </div> 
+      
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6 text-center">
+      <button class="btn m-1" [disabled]="left"  (click)="sub()"><i class="fa-solid fa-caret-left fa-2x"></i></button>
+      <button class="btn m-1" [disabled]="right"  (click)="add()"><i class="fa-solid fa-caret-right fa-2x"></i></button>
+       
+    </div>
   </div>
  
 <br>

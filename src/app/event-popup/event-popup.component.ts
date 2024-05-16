@@ -23,8 +23,10 @@ export class EventPopupComponent implements OnInit {
       next: (res) => {
         for (let value of res) {
           value.date = this.formatDate(new Date(value.date));
+          value.showCardBody = false;
         }
         this.data = res;
+        console.log(this.data);
       }, error: (err) => { },
       complete: () => this.http.hideLoader()
     })
@@ -36,5 +38,8 @@ export class EventPopupComponent implements OnInit {
   }
   closePopup() {
     this.dialog.close();
+  }
+  toggleCardBody(item: any) {
+    item.showCardBody = !item.showCardBody;
   }
 }

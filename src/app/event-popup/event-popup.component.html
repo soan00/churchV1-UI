@@ -4,9 +4,20 @@
   <!-- outer-card.component.html -->
 <div class="card w-50 text-center mt-4" style="margin-left: 25%;"  *ngFor="let item of data">
   <div class="card-header">
-    <h4>{{item.name}}</h4>
+    <div class="row">
+      <div class="col-md-10 text-center">
+<h4 >{{item.name}}</h4>
+      </div>
+      <div class="col-md-1"> <button class="btn btn-link" (click)="toggleCardBody(item)">
+          <i class="fas" [ngClass]="{'fa-chevron-down': !item.showCardBody, 'fa-chevron-up': item.showCardBody}"></i>
+        </button>
+
+      </div>
+   
+    </div>
+    
   </div>
-  <div class="card-body">
+  <div class="card-body"  *ngIf="item.showCardBody">
    <p><b>Discription:</b> {{item.discription}}</p>
    <p><b>Date and Time:</b> {{item.date}}</p>
   </div>

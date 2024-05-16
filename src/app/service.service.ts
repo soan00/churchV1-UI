@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class ServiceService {
   getNavbarData(): Observable<any> {
     return this.http.get<any>(`${this.url}/Home/getNavItems`);
   }
-  getContents(): Observable<any> {
-    return this.http.get<any>(`${this.url}/Home/getContent`)
+  getContents(pageNumber: number, pageSize: number): Observable<any> {
+    return this.http.get<any>(`${this.url}/Home/getContent?pageNumber=${pageNumber}&pageSize=${pageSize}`)
   }
   getEvent(): Observable<any> {
     return this.http.get<any>(`${this.url}/Home/getEvent`);
